@@ -196,7 +196,7 @@ export function ProductFormDialog({
                 </span>
                 <Input
                   id="costo"
-                  type="number"
+                  type="text"
                   min={0}
                   step={PRICE_STEP}
                   // Si el valor es 0, lo muestra vacío para que no moleste el cero inicial al borrar
