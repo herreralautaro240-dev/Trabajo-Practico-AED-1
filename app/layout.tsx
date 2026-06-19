@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'EcoSwap — Intercambia y alquila objetos reutilizables',
+  title: 'Kambio — Intercambia y alquila objetos reutilizables',
   description:
-    'EcoSwap es el mercado comunitario para alquilar e intercambiar objetos reutilizables. Dale una segunda vida a las cosas y reduce el desperdicio.',
+    'Kambio es el mercado comunitario para alquilar e intercambiar objetos reutilizables. Dale una segunda vida a las cosas y reduce el desperdicio.',
   generator: 'v0.app',
   icons: {
     icon: [
