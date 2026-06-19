@@ -197,14 +197,21 @@ export function ProductFormDialog({
                 <Input
                   id="costo"
                   type="text"
-                  min={0}
-                  step={PRICE_STEP}
-                  // Si el valor es 0, lo muestra vacío para que no moleste el cero inicial al borrar
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  // Si el valor es 0, lo muestra vacío para que puedas borrar limpio
                   value={form.costo_alquiler === 0 ? "" : form.costo_alquiler}
                   onChange={(e) => {
                     const val = e.target.value;
-                    // Si se borra todo, guarda un string vacío para permitir escribir fluidamente
-                    update("costo_alquiler", val === "" ? "" : Number(val) as any);
+                    // Permitir borrar todo (deja cadena vacía)
+                    if (val === "") {
+                      update("costo_alquiler", "" as any);
+                      return;
+                    }
+                    // Solo actualiza si el usuario tipea números enteros positivos
+                    if (/^\d+$/.test(val)) {
+                      update("costo_alquiler", Number(val));
+                    }
                   }}
                   className="pl-7"
                 />
