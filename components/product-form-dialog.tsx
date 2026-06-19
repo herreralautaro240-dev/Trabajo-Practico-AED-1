@@ -199,9 +199,14 @@ export function ProductFormDialog({
                   type="number"
                   min={0}
                   step={PRICE_STEP}
-                  value={form.costo_alquiler}
-                  onChange={(e) =>
-                    update("costo_alquiler", Number(e.target.value))
+                  value={form.costo_alquiler === 0 ? "" : form.costo_alquiler}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    // Si se borra todo, guarda un string vacío para permitir escribir fluidamente
+                   update("costo_alquiler", val === "" ? "" : Number(val) as any);
+                 }}
+                className="pl-7"
+                  />
                   }
                   className="pl-7"
                 />
