@@ -44,9 +44,17 @@ export default function Page() {
   } | null>(null)
   const [typing, setTyping] = useState(false)
 
+  // 1. Primero calculamos el precio dinámico basado en los productos
+  const dynamicMaxPrice = useMemo(() => {
+    if (products.length === 0) return 20000
+    const highest = Math.max(...products.map((p) => p.costo_alquiler))
+    return highest > MAX_PRICE ? highest : MAX_PRICE
+  }, [products])
+
+  // 2. Ahora sí podemos usar dynamicMaxPrice como el valor máximo inicial del filtro
   const [filters, setFilters] = useState<FilterState>({
     query: "",
-    priceRange: [0, 100000],
+    priceRange: [0, dynamicMaxPrice], // <-- Ahora arranca justo en el tope dinámico real
     categorias: [],
     etiquetas: [],
   })
@@ -62,11 +70,7 @@ export default function Page() {
     products.forEach((p) => p.etiquetas.forEach((t) => set.add(t)))
     return Array.from(set).sort()
   }, [products])
-    const dynamicMaxPrice = useMemo(() => {
-    if (products.length === 0) return 20000
-    const highest = Math.max(...products.map((p) => p.costo_alquiler))
-    return highest > MAX_PRICE ? highest : MAX_PRICE
-  }, [products])
+
   const filtered = useMemo(() => {
     return products.filter((p) => {
       const q = filters.query.trim().toLowerCase()
@@ -74,9 +78,12 @@ export default function Page() {
         q === "" ||
         p.nombre.toLowerCase().includes(q) ||
         p.descripcion.toLowerCase().includes(q)
+      
+      // Corregido con los paréntesis correctos para que no falle la lógica
       const matchesPrice =
         p.costo_alquiler >= filters.priceRange[0] &&
-        p.costo_alquiler <= filters.priceRange[1] || filters.priceRange[1] >= dynamicMaxPrice /// editado
+        (p.costo_alquiler <= filters.priceRange[1] || filters.priceRange[1] >= dynamicMaxPrice)
+
       const matchesCat =
         filters.categorias.length === 0 ||
         filters.categorias.includes(p.categoria)
@@ -85,8 +92,8 @@ export default function Page() {
         filters.etiquetas.every((t) => p.etiquetas.includes(t))
       return matchesQuery && matchesPrice && matchesCat && matchesTags
     })
-  }, [products, filters])
-
+  }, [products, filters, dynamicMaxPrice]) // <-- Agregamos dynamicMaxPrice aquí para que React vigile sus cambios
+  
   // Auth handlers
   const handleLogin = (user: User) => setCurrentUser(user)
   const handleRegister = (user: User) => {
