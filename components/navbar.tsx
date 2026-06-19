@@ -27,7 +27,7 @@ export function Navbar({
           </span>
           <div className="leading-tight">
             <p className="font-heading text-lg font-bold tracking-tight">
-              EcoSwap
+              Kambio
             </p>
             <p className="text-xs text-muted-foreground">Reutiliza, no compres</p>
           </div>
