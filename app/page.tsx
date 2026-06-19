@@ -230,14 +230,14 @@ export default function Page() {
 
         <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
           <div className="lg:sticky lg:top-20 lg:self-start">
-            <Filters
+            <Filters     
               filters={filters}
               onChange={setFilters}
-              maxPrice={MAX_PRICE}
+              maxPrice={dynamicMaxPrice} // <-- Cambiás MAX_PRICE por esto
               categorias={[...CATEGORIAS]}
               etiquetas={allTags}
               resultCount={filtered.length}
-            />
+            />  
           </div>
 
           <section aria-label="Catálogo de objetos">
