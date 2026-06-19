@@ -44,17 +44,17 @@ export default function Page() {
   } | null>(null)
   const [typing, setTyping] = useState(false)
 
-  // 1. Primero calculamos el precio dinámico basado en los productos
+ // 1. Primero calculamos el precio dinámico real basado en la lista de productos
   const dynamicMaxPrice = useMemo(() => {
     if (products.length === 0) return 20000
     const highest = Math.max(...products.map((p) => p.costo_alquiler))
     return highest > MAX_PRICE ? highest : MAX_PRICE
   }, [products])
 
-  // 2. Ahora sí podemos usar dynamicMaxPrice como el valor máximo inicial del filtro
+  // 2. Ahora que ya existe, lo usamos con seguridad como el tope predeterminado
   const [filters, setFilters] = useState<FilterState>({
     query: "",
-    priceRange: [0, dynamicMaxPrice], // <-- Ahora arranca justo en el tope dinámico real
+    priceRange: [0, dynamicMaxPrice], 
     categorias: [],
     etiquetas: [],
   })
@@ -79,7 +79,7 @@ export default function Page() {
         p.nombre.toLowerCase().includes(q) ||
         p.descripcion.toLowerCase().includes(q)
       
-      // Corregido con los paréntesis correctos para que no falle la lógica
+      // Filtro de precio corregido y limpio
       const matchesPrice =
         p.costo_alquiler >= filters.priceRange[0] &&
         (p.costo_alquiler <= filters.priceRange[1] || filters.priceRange[1] >= dynamicMaxPrice)
@@ -92,7 +92,7 @@ export default function Page() {
         filters.etiquetas.every((t) => p.etiquetas.includes(t))
       return matchesQuery && matchesPrice && matchesCat && matchesTags
     })
-  }, [products, filters, dynamicMaxPrice]) // <-- Agregamos dynamicMaxPrice aquí para que React vigile sus cambios
+  }, [products, filters, dynamicMaxPrice])
   
   // Auth handlers
   const handleLogin = (user: User) => setCurrentUser(user)
