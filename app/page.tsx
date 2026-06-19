@@ -76,7 +76,7 @@ export default function Page() {
         p.descripcion.toLowerCase().includes(q)
       const matchesPrice =
         p.costo_alquiler >= filters.priceRange[0] &&
-        p.costo_alquiler <= filters.priceRange[1]
+        (p.costo_alquiler <= filters.priceRange[1] || filters.priceRange[1] >= dynamicMaxPrice)
       const matchesCat =
         filters.categorias.length === 0 ||
         filters.categorias.includes(p.categoria)
