@@ -39,8 +39,8 @@ export function AuthDialog({
     if (open) {
       setMode("login")
       setNombre("")
-      setEmail("lautaro@kambio.com")
-      setPassword("kambio123")
+      setEmail("lautaro@ecoswap.com")
+      setPassword("ecoswap123")
       setError("")
     }
   }, [open])
@@ -53,8 +53,8 @@ export function AuthDialog({
       setEmail("")
       setPassword("")
     } else {
-      setEmail("lautaro@kambio.com")
-      setPassword("kambio123")
+      setEmail("lautaro@ecoswap.com")
+      setPassword("ecoswap123")
     }
   }
 
@@ -69,7 +69,7 @@ export function AuthDialog({
           u.password === password,
       )
       if (!match) {
-        setError("Email o contraseña incorrectos. Probá lautaro@kambio.com.")
+        setError("Email o contraseña incorrectos. Probá lautaro@ecoswap.com.")
         return
       }
       onLogin(match)
@@ -108,7 +108,7 @@ export function AuthDialog({
               <span className="flex size-9 items-center justify-center rounded-xl bg-primary-foreground/15">
                 <Leaf className="size-5" aria-hidden="true" />
               </span>
-              <p className="font-heading text-lg font-bold">Kambio</p>
+              <p className="font-heading text-lg font-bold">ecoswap</p>
             </div>
             <div>
               <h2 className="text-balance font-heading text-2xl font-bold leading-tight">
@@ -243,7 +243,7 @@ export function AuthDialog({
 
               {mode === "login" && (
                 <p className="text-center text-xs text-muted-foreground">
-                  Cuenta demo: lautaro@kambio.com / kambio123
+                  Cuenta demo: lautaro@ecoswap.com / ecoswap123
                 </p>
               )}
             </form>
