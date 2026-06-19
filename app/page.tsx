@@ -46,7 +46,7 @@ export default function Page() {
 
   const [filters, setFilters] = useState<FilterState>({
     query: "",
-    priceRange: [0, MAX_PRICE],
+    priceRange: [0, 100000],
     categorias: [],
     etiquetas: [],
   })
@@ -62,7 +62,11 @@ export default function Page() {
     products.forEach((p) => p.etiquetas.forEach((t) => set.add(t)))
     return Array.from(set).sort()
   }, [products])
-
+    const dynamicMaxPrice = useMemo(() => {
+    if (products.length === 0) return 20000
+    const highest = Math.max(...products.map((p) => p.costo_alquiler))
+    return highest > MAX_PRICE ? highest : MAX_PRICE
+  }, [products])
   const filtered = useMemo(() => {
     return products.filter((p) => {
       const q = filters.query.trim().toLowerCase()
