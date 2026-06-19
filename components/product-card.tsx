@@ -96,7 +96,7 @@ export function ProductCard({
             {owner ? getInitials(owner.nombre) : "?"}
           </span>
           <span>
-            {isOwner ? "Tu publicación" : owner?.nombre ?? "Usuario EcoSwap"}
+            {isOwner ? "Tu publicación" : owner?.nombre ?? "Usuario Kambio"}
           </span>
         </div>
 
