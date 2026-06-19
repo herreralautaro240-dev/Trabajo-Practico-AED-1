@@ -199,18 +199,15 @@ export function ProductFormDialog({
                   type="number"
                   min={0}
                   step={PRICE_STEP}
+                  // Si el valor es 0, lo muestra vacío para que no moleste el cero inicial al borrar
                   value={form.costo_alquiler === 0 ? "" : form.costo_alquiler}
                   onChange={(e) => {
                     const val = e.target.value;
                     // Si se borra todo, guarda un string vacío para permitir escribir fluidamente
-                   update("costo_alquiler", val === "" ? "" : Number(val) as any);
-                 }}
-                className="pl-7"
-                  />
-                  }
+                    update("costo_alquiler", val === "" ? "" : Number(val) as any);
+                  }}
                   className="pl-7"
                 />
-              </div>
             </div>
           )}
 
