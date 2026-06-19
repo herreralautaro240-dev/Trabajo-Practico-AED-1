@@ -274,7 +274,7 @@ export default function Page() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-muted-foreground sm:flex-row md:px-6">
           <p className="flex items-center gap-2">
             <Leaf className="size-4 text-primary" aria-hidden="true" />
-            EcoSwap — Reutiliza, no compres.
+            Kambio — Reutiliza, no compres.
           </p>
           <p>Demostración interactiva en memoria.</p>
         </div>
