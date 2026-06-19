@@ -20,7 +20,7 @@ export function Hero({ total, disponibles }: HeroProps) {
         </h1>
         <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
           Alquila lo que necesitas por unos días o intercambia lo que te sobra.
-          EcoSwap conecta a tu comunidad para reducir el desperdicio y ahorrar
+          Kambio conecta a tu comunidad para reducir el desperdicio y ahorrar
           dinero.
         </p>
 
